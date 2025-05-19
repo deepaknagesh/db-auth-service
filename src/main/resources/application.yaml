@@ -1,0 +1,39 @@
+spring:
+  # Context propagation is to set to AUTO for traceId and spanId to be logged
+  reactor.context-propagation: AUTO
+  application:
+    name: user-demo-app
+  r2dbc:
+    url: ${R2DBC_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  liquibase:
+    change-log: db/changelog/db.changelog-master.yaml
+    url: ${JDBC_URL}
+    user: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    liquibase-schema: public
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format-sql: true
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+#    propagation:
+#      consume: [ b3, w3c ]
+#      produce: [ b3, w3c ]
+
+logging:
+#  structured:
+#    format:
+#      console: ecs
+#    #      console: gelf
+#    #      console: logstash
+#log4j2:
+#  contextSelector: org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+#  isThreadContextMapInheritable: true
+#  garbagefreeThreadContextMap: true
