@@ -15,7 +15,7 @@ RUN gradle clean build -x test
 
 FROM --platform=linux/amd64 eclipse-temurin:17-jre
 ENV APP_HOME=/usr/app/
-ENV ARTIFACT_NAME=db-auth-service.jar
+ENV ARTIFACT_NAME=db-auth-service-0.0.1-SNAPSHOT.jar
 
 WORKDIR $APP_HOME
 ARG JAR_FILE=$APP_HOME/build/libs/$ARTIFACT_NAME
