@@ -14,7 +14,7 @@ COPY . .
 RUN gradle clean build -x test
 
 FROM eclipse-temurin:17-jre
-ENV APP_HOME=/usr/app/
+ENV APP_HOME=/usr/app
 ENV ARTIFACT_NAME=db-auth-service-0.0.1-SNAPSHOT.jar
 
 WORKDIR $APP_HOME
