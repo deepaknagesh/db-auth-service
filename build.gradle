@@ -9,6 +9,11 @@ version = '0.0.1-SNAPSHOT'
 
 bootJar {
     archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}"
+    enabled = true
+}
+
+jar {
+    enabled = false
 }
 
 configurations {
@@ -32,6 +37,10 @@ java {
 
 repositories {
     mavenCentral()
+}
+
+springBoot {
+    mainClass = 'com.districtbusiness.authservice.AuthServiceApplication'
 }
 
 var mapStructVersion = "1.6.3"
