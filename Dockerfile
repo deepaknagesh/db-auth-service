@@ -15,11 +15,12 @@ RUN gradle clean build -x test
 
 FROM --platform=linux/amd64 eclipse-temurin:17-jre
 ENV APP_HOME=/usr/app/
+ENV ARTIFACT_NAME=db-auth-service.jar
 
 WORKDIR $APP_HOME
-ARG JAR_FILE=$APP_HOME/build/libs/*.jar
-COPY --from=TEMP_BUILD_IMAGE ${JAR_FILE} app.jar
+ARG JAR_FILE=$APP_HOME/build/libs/$ARTIFACT_NAME
+COPY --from=TEMP_BUILD_IMAGE $JAR_FILE .
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT exec java -jar ${ARTIFACT_NAME}
