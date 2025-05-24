@@ -1,5 +1,5 @@
 # temp container to build using gradle
-FROM --platform=linux/amd64 gradle:jdk17-corretto AS TEMP_BUILD_IMAGE
+FROM gradle:jdk17-corretto AS TEMP_BUILD_IMAGE
 ENV APP_HOME=/usr/app/
 WORKDIR $APP_HOME
 COPY build.gradle settings.gradle $APP_HOME
@@ -13,7 +13,7 @@ RUN gradle build -x test || return 0
 COPY . .
 RUN gradle clean build -x test
 
-FROM --platform=linux/amd64 eclipse-temurin:17-jre
+FROM eclipse-temurin:17-jre
 ENV APP_HOME=/usr/app/
 ENV ARTIFACT_NAME=db-auth-service-0.0.1-SNAPSHOT.jar
 
